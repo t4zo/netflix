@@ -3,7 +3,8 @@ import { AppProps } from 'next/dist/next-server/lib/router/router';
 
 import 'normalize.css';
 import { GlobalStyles } from 'globalStyles';
-
+import { ThemeProvider } from 'styled-components';
+import theme from 'styles/theme';
 
 export default function MyApp({ Component, pageProps }: AppProps) {
   return (
@@ -15,7 +16,9 @@ export default function MyApp({ Component, pageProps }: AppProps) {
         <meta name='description' content='Netflix clone website' />
         <title>Netflix</title>
       </Head>
-      <Component {...pageProps} />
+      <ThemeProvider theme={theme}>
+        <Component {...pageProps} />
+      </ThemeProvider>
     </>
   );
 }

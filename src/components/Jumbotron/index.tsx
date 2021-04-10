@@ -1,28 +1,26 @@
-import { ReactNode } from 'react';
+// import { ReactNode } from 'react';
 import { IJumbotron } from 'interfaces';
-import { Container, Inner, Item, Title, SubTitle, Pane, Image } from './jumbotron';
+import { Container, Inner, Item, Title, SubTitle, Pane, Image } from './style';
 
 interface Props {
-  children?: ReactNode;
-  direction: string;
+  // children?: ReactNode;
   item: IJumbotron;
 }
 
-export default function Jumbotron({ direction = 'row', item }: Props) {
-  // return <Inner direction={direction}>{children}</Inner>;
+export default function Jumbotron({ item }: Props) {
+  // return <Inner direction={direction} {...restProps}>{children}</Inner>;
   return (
-    <Item>
-      <Inner direction={direction}>
-        <Jumbotron.Pane>
-          <Jumbotron.Title>{item.title}</Jumbotron.Title>
-          <Jumbotron.SubTitle>{item.subTitle}</Jumbotron.SubTitle>
-        </Jumbotron.Pane>
-        <Jumbotron.Pane>
-          {/* <Jumbotron.Image src={item.image} alt={item.alt} width={300} height={150} layout='responsive' /> */}
-          <Jumbotron.Image src={item.image} alt={item.alt} />
-        </Jumbotron.Pane>
-      </Inner>
-    </Item>
+    <Jumbotron.Container>
+      <Item>
+        <Inner>
+          <Jumbotron.Pane>
+            <Jumbotron.Title>{item.title}</Jumbotron.Title>
+            <Jumbotron.SubTitle>{item.subTitle}</Jumbotron.SubTitle>
+          </Jumbotron.Pane>
+          <Jumbotron.Image src={item.image.src} alt={item.image.alt} width={item.image.width} height={item.image.height} layout='intrinsic' />
+        </Inner>
+      </Item>
+    </Jumbotron.Container>
   );
 }
 

@@ -19,7 +19,12 @@ export interface IJumbotron {
   id: number;
   title: string;
   subTitle: string;
-  image: string;
+  image: IJumbotronImage;
+}
+
+export interface IJumbotronImage {
+  src: string;
   alt: string;
-  direction: string;
+  width: string;
+  height: string;
 }
