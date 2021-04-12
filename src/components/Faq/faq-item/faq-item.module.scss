@@ -1,8 +1,6 @@
 @use 'styles/colors';
 
 .item {
-  color: colors.$white;
-
   .header {
     margin: 5px 0;
     padding: 0 25px;
@@ -11,7 +9,6 @@
     align-items: center;
     background-color: colors.$secondary-light;
     cursor: pointer;
-    color: colors.$white;
     user-select: none;
 
     img {

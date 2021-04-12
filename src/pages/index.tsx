@@ -1,6 +1,5 @@
 import { useState } from 'react';
-import Layout from 'components/Layout';
-import { Jumbotron, Footer, Faq } from 'components';
+import { Layout, Header, Jumbotron, Footer, Faq } from 'components';
 
 import jumboData from 'fixtures/jumbo.json';
 
@@ -13,6 +12,7 @@ export default function IndexPage() {
 
   return (
     <Layout title='Netflix'>
+      <Header />
       {jumboData.map((item) => (
         <Jumbotron key={item.id} item={item} />
       ))}

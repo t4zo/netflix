@@ -17,7 +17,9 @@ export default function OptInForm() {
       <form className={styles.form}>
         <input type='email' id='email' name='email' placeholder='Email address' />
         <div className={styles.buttonContainer}>
-          <a ref={emailRef} onClick={handleSubmit}>Try it now</a>
+          <a ref={emailRef} onClick={handleSubmit}>
+            Try it now
+          </a>
           <Image src='/images/icons/chevron-right.png' alt='Right Arrow' width={20} height={20} />
         </div>
       </form>

@@ -1,10 +1,12 @@
 import Head from 'next/head';
 import { AppProps } from 'next/dist/next-server/lib/router/router';
 
-import 'normalize.css';
 import { GlobalStyles } from 'globalStyles';
 import { ThemeProvider } from 'styled-components';
 import theme from 'styles/theme';
+
+import 'normalize.css';
+import 'styles/_base.scss'
 
 export default function MyApp({ Component, pageProps }: AppProps) {
   return (
