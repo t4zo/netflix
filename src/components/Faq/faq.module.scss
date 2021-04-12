@@ -1,0 +1,22 @@
+@use 'styles/colors';
+
+.container {
+  border-bottom: 8px solid colors.$divider;
+
+  .inner {
+    max-width: 815px;
+    margin: auto;
+    padding: 70px 45px;
+
+    .title {
+      color: colors.$white;
+      text-align: center;
+      margin-bottom: 50px;
+      font-size: 35px;
+
+      @media (min-width: 600px) {
+        font-size: 50px;
+      }
+    }
+  }
+}

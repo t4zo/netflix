@@ -1,13 +1,18 @@
 import { Container, Row, Column, Link, Title, Text, Break } from './style';
 
-export default function Footer() {
+interface Props {
+  handleToggleFaq: () => void;
+}
+export default function Footer({ handleToggleFaq }: Props) {
   return (
     <Footer.Container>
       <Footer.Title>Questions? Contact Us.</Footer.Title>
       <Footer.Break />
       <Footer.Row>
         <Footer.Column>
-          <Footer.Link href='#'>FAQ</Footer.Link>
+          <Footer.Link onClick={handleToggleFaq} style={{ cursor: 'pointer' }}>
+            FAQ
+          </Footer.Link>
           <Footer.Link href='#'>Investor Relations</Footer.Link>
           <Footer.Link href='#'>Ways to Watch</Footer.Link>
           <Footer.Link href='#'>Corporate Information</Footer.Link>
