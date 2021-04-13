@@ -1,5 +1,4 @@
 import { getFirebaseInstance } from './libs/firebase';
-import { IMedia } from 'interfaces';
 
 function generateUUID() {
   return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, (c) => {
@@ -9,7 +8,7 @@ function generateUUID() {
   });
 }
 
-async function seedDocument(name: string, data: IMedia[]) {
+async function seedDocument(name, data) {
   const firebase = getFirebaseInstance();
   const querySnapshot = await firebase.firestore().collection(name).get();
   if (!querySnapshot.empty) {

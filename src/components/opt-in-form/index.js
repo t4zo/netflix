@@ -3,9 +3,9 @@ import { useRef } from 'react';
 import styles from './opt-in-form.module.scss';
 
 export default function OptInForm() {
-  const emailRef = useRef<HTMLAnchorElement>(null);
+  const emailRef = useRef(null);
 
-  function handleSubmit(e: any) {
+  function handleSubmit(e) {
     e.preventDefault();
     // const email = e.target.email.value;
     const email = emailRef.current?.text;

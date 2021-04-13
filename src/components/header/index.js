@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import { OptInForm } from 'components';
+import { OptInForm } from '../../components';
 
 import styles from './header.module.scss';
 

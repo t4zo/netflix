@@ -30,19 +30,19 @@ export const Column = styled.div`
 `;
 
 export const Link = styled.a`
-  color: ${({ theme }: any) => theme.color.primaryLight};
+  color: ${({ theme }) => theme.color.primaryLight};
   margin-bottom: 20px;
   font-size: 0.9rem;
   text-decoration: none;
 
   &:hover {
-    color: ${({ theme }: any) => theme.color.primary};
+    color: ${({ theme }) => theme.color.primary};
   }
 `;
 
 export const Title = styled.p`
   font-size: 1rem;
-  color: ${({ theme }: any) => theme.color.primaryLight};
+  color: ${({ theme }) => theme.color.primaryLight};
   margin-bottom: 40px;
 `;
 

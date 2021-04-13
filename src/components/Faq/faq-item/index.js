@@ -1,13 +1,8 @@
 import { useState } from 'react';
-import { IFaqs } from 'interfaces';
 import styles from './faq-item.module.scss';
 import Image from 'next/image';
 
-interface Props {
-  faq: IFaqs;
-}
-
-export default function AccordionItem({ faq }: Props) {
+export default function AccordionItem({ faq }) {
   const [isVisible, setIsVisible] = useState(false);
 
   // let icon;

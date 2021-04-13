@@ -1,6 +1,6 @@
-import { FaqItem, OptInForm } from 'components';
+import { FaqItem, OptInForm } from '../../components';
 import styles from './faq.module.scss';
-import FaqsData from 'fixtures/faqs.json';
+import FaqsData from '../../fixtures/faqs.json';
 
 export default function Faq() {
   return (

@@ -1,9 +1,6 @@
 import { Container, Row, Column, Link, Title, Text, Break } from './style';
 
-interface Props {
-  handleToggleFaq?: () => void;
-}
-export default function Footer({ handleToggleFaq }: Props) {
+export default function Footer({ handleToggleFaq }) {
   return (
     <Footer.Container>
       <Footer.Title>Questions? Contact Us.</Footer.Title>
@@ -44,30 +41,30 @@ export default function Footer({ handleToggleFaq }: Props) {
   );
 }
 
-Footer.Container = function FooterContainer({ children }: any) {
+Footer.Container = function FooterContainer({ children }) {
   return <Container>{children}</Container>;
 };
 
-Footer.Row = function FooterRow({ children, ...restProps }: any) {
+Footer.Row = function FooterRow({ children, ...restProps }) {
   return <Row {...restProps}>{children}</Row>;
 };
 
-Footer.Column = function FooterColumn({ children, ...restProps }: any) {
+Footer.Column = function FooterColumn({ children, ...restProps }) {
   return <Column {...restProps}>{children}</Column>;
 };
 
-Footer.Link = function FooterLink({ children, ...restProps }: any) {
+Footer.Link = function FooterLink({ children, ...restProps }) {
   return <Link {...restProps}>{children}</Link>;
 };
 
-Footer.Title = function FooterTitle({ children, ...restProps }: any) {
+Footer.Title = function FooterTitle({ children, ...restProps }) {
   return <Title {...restProps}>{children}</Title>;
 };
 
-Footer.Text = function FooterText({ children, ...restProps }: any) {
+Footer.Text = function FooterText({ children, ...restProps }) {
   return <Text {...restProps}>{children}</Text>;
 };
 
-Footer.Break = function FooterBreak({ children, ...restProps }: any) {
+Footer.Break = function FooterBreak({ children, ...restProps }) {
   return <Break {...restProps}>{children}</Break>;
 };

@@ -1,11 +1,7 @@
 import styled from 'styled-components';
 import NextImage from 'next/image';
 
-interface StyledProps {
-  direction?: string;
-}
-
-export const Inner = styled.div<StyledProps>`
+export const Inner = styled.div`
   max-width: 1000px;
   margin: auto;
 

@@ -1,19 +1,18 @@
 import Head from 'next/head';
-import { AppProps } from 'next/dist/next-server/lib/router/router';
-
-import { FirebaseContext } from 'contexts/firebaseContext';
-import { getFirebaseInstance } from 'libs/firebase';
-
-import { GlobalStyles } from 'globalStyles';
 import { ThemeProvider } from 'styled-components';
-import theme from 'styles/theme';
+
+import { FirebaseContext } from '../contexts/firebaseContext';
+import { getFirebaseInstance } from '../libs/firebase';
+
+import { GlobalStyles } from '../globalStyles';
+import theme from '../styles/theme';
 
 import 'normalize.css';
-import 'styles/_base.scss'
+import '../styles/_base.scss'
 
-import 'libs/firebase';
+import '../libs/firebase';
 
-export default function MyApp({ Component, pageProps }: AppProps) {
+export default function MyApp({ Component, pageProps }) {
   return (
     <FirebaseContext.Provider value={{ firebase: getFirebaseInstance() }}>
       <GlobalStyles />
