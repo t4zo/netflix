@@ -1,7 +1,7 @@
 import { Container, Row, Column, Link, Title, Text, Break } from './style';
 
 interface Props {
-  handleToggleFaq: () => void;
+  handleToggleFaq?: () => void;
 }
 export default function Footer({ handleToggleFaq }: Props) {
   return (
