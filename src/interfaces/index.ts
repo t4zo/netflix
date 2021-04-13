@@ -28,3 +28,12 @@ export interface IJumbotronImage {
   width: string;
   height: string;
 }
+
+export interface IMedia {
+  id: string;
+  title: string;
+  description: string;
+  genre: string;
+  maturity: string;
+  slug: string;
+}
