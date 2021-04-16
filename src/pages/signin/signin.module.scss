@@ -21,23 +21,6 @@
     margin-top: 40px;
     margin-bottom: 50px;
 
-    .inputContainer {
-      display: flex;
-      flex-direction: column;
-      margin-bottom: 25px;
-
-      input {
-        border-radius: 4px;
-        border: 0;
-        color: colors.$white;
-        background-color: #333333;
-        height: 30px;
-        line-height: 50px;
-        padding: 10px 20px;
-        margin-bottom: 15px;
-      }
-    }
-
     .signIn {
       background-color: colors.$primary;
       color: colors.$white;
@@ -109,58 +92,6 @@
     @media (min-width: 740px) {
       width: 314px;
       padding: 68px;
-    }
-  }
-
-  .footer {
-    background-color: colors.$gray-light-background;
-    width: 100%;
-    color: colors.$gray-darker;
-    padding: 40px 0;
-
-    .footerInner {
-      max-width: 50vw;
-      margin: auto;
-
-      .footerTitle {
-        margin-bottom: 30px;
-      }
-
-      a {
-        color: colors.$gray-darker;
-
-        &:hover {
-          text-decoration: underline;
-        }
-      }
-
-      .footerLinks {
-        display: flex;
-        flex-wrap: wrap;
-        line-height: 40px;
-        font-size: 13px;
-
-        .footerLinkItem {
-          width: 25%;
-
-          .footerLink {
-            color: colors.$gray-darker;
-
-            &:hover {
-              text-decoration: underline;
-            }
-          }
-        }
-      }
-
-      .language {
-        margin: 30px 30px 0 0;
-        background-color: colors.$secondary;
-        border: 1px solid colors.$gray-darker;
-        color: colors.$gray-darker;
-        font-size: 13px;
-        padding: 10px;
-      }
     }
   }
 }

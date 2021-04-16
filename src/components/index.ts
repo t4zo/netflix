@@ -6,3 +6,6 @@ export { default as Faq } from 'components/faq';
 export { default as FaqItem } from 'components/faq/faq-item';
 export { default as OptInForm } from 'components/opt-in-form';
 export { default as Header } from 'components/header';
+export { default as Inputs } from 'components/inputs';
+export { default as Input } from 'components/inputs/input';
+export { default as SignFooter } from 'components/sign-footer';
