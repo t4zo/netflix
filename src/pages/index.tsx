@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { Layout, Header, Jumbotron, Footer, Faq } from 'components';
 
-
 import jumboData from 'fixtures/jumbo.json';
 
 export default function IndexPage() {
