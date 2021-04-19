@@ -11,6 +11,14 @@ export default function SignInPage() {
 
   function handleSubmit(e: any) {
     e.preventDefault();
+    const email = e.target.email.value;
+    const password = e.target.password.value;
+
+    setFormInputs({
+      ...formInputs,
+      email,
+      password
+    });
 
     // firebase
   }
@@ -21,7 +29,7 @@ export default function SignInPage() {
         <Image src='/images/logo.svg' alt='Netflix logo' width={167} height={45} />
       </div>
       <div className={styles.inner}>
-        <form>
+        <form onSubmit={handleSubmit}>
           <h1>Sign In</h1>
           {!isValid && <p>{formInputs.error}</p>}
           <Inputs />
