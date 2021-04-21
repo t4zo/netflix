@@ -4,6 +4,11 @@
 //
 // import { User } from 'path/to/interfaces';
 
+export type User = {
+  id: number;
+  name: string;
+};
+
 export type IUser = {
   uid: string;
   email: string;
