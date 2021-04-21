@@ -17,9 +17,34 @@
     width: 90vw;
     margin: auto;
     padding: 30px;
-    background-color: colors.$gray-light-background;
+    background-color: colors.$dark-background-light;
     margin-top: 40px;
     margin-bottom: 50px;
+
+    .errorMessage {
+      background-color: orangered;
+      color: colors.$white;
+      padding: 10px;
+      border-radius: 4px;
+      margin-bottom: 10px;
+    }
+
+    .inputContainer {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 25px;
+
+      input {
+        border-radius: 4px;
+        border: 0;
+        color: colors.$white;
+        background-color: #333333;
+        height: 30px;
+        line-height: 50px;
+        padding: 10px 20px;
+        margin-bottom: 15px;
+      }
+    }
 
     .signIn {
       background-color: colors.$primary;
@@ -32,6 +57,13 @@
       font-weight: 600;
       border-radius: 4px;
       margin: 12px 0;
+      cursor: pointer;
+
+      &[disabled] {
+        color: rgba($color: colors.$white, $alpha: 0.7);
+        background-color: rgba($color: colors.$primary, $alpha: 0.4);
+        cursor: not-allowed;
+      }
     }
 
     .actions {
@@ -70,6 +102,7 @@
 
         a {
           color: colors.$white;
+          cursor: pointer;
 
           &:hover {
             text-decoration: underline;

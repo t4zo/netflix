@@ -18,7 +18,7 @@ export default function Header() {
           <option value='pt-BR'>Português</option>
           <option value='en-US'>English</option>
         </select>
-        <Link href='/signin'>
+        <Link href='/sign'>
           <a className={styles.signIn}>Sign In</a>
         </Link>
       </nav>
