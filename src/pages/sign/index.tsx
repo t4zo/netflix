@@ -5,6 +5,7 @@ import { Input, SignFooter } from 'components';
 import styles from './sign.module.scss';
 import { FirebaseContext } from 'contexts/firebaseContext';
 import Router from 'next/router';
+import { signIn } from 'next-auth/client';
 
 interface PageState {
   firstName?: string;
@@ -53,8 +54,15 @@ export default function SignPage() {
 
   async function handleSignIn({ email, password }: PageState) {
     try {
-      await firebase.auth().signInWithEmailAndPassword(email, password);
-      Router.push('/browse');
+      const response = await signIn('credentials', {
+        redirect: false,
+        email,
+        password,
+      });
+      // await firebase.auth().signInWithEmailAndPassword(email, password);
+      if(response) {
+        Router.push('/browse');
+      }
     } catch (error) {
       setFormInputs({ ...formInputs, password: '', error: error.message });
     }

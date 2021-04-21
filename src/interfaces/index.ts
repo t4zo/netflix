@@ -4,10 +4,15 @@
 //
 // import { User } from 'path/to/interfaces';
 
-export type User = {
-  id: number;
-  name: string;
+export type IUser = {
+  uid: string;
+  email: string;
 };
+
+export interface ISignIn {
+  email: string;
+  password: string;
+}
 
 export interface IFaqs {
   id: number;
