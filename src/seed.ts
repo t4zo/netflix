@@ -11,13 +11,13 @@ function generateUUID() {
 
 async function seedDocument(name: string, data: IMedia[]) {
   const firebase = getFirebaseInstance();
-  const querySnapshot = await firebase.firestore().collection(name).get();
-  if (!querySnapshot.empty) {
+  const snapshot = await firebase.firestore().collection(name).get();
+  if (snapshot.docs.length !== 0) {
     return;
   }
-
-  data.forEach((d) => {
-    firebase.firestore().collection(name).add(d);
+  
+  data.forEach(async (d) => {
+    await firebase.firestore().collection(name).add(d);
   });
 }
 

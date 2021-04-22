@@ -5,12 +5,16 @@ import Link from 'next/link';
 import Image from 'next/image';
 
 import styles from './signin.module.scss';
-import { UseAuthListener } from 'hooks';
+import { useAuthListener, useContent } from 'hooks';
+import genreFilter from 'utils/genre-filter';
 
 export default function BrowsePage() {
   const [session, loading] = useSession();
-  const { user } = UseAuthListener();
-  // const { films } = UseContent('films');
+  const { user } = useAuthListener();
+  const { films } = useContent('films');
+  const { series } = useContent('series');
+  const slides = genreFilter({ series, films });
+  console.log(slides)
 
   useEffect(() => {
     if (!loading && !session) {
@@ -21,9 +25,10 @@ export default function BrowsePage() {
   if (loading || !session) {
     return <p style={{ textAlign: 'center' }}>Carregando...</p>;
   }
-  if (!user) {
-    return <p>a</p>;
-  }
+
+  // if (!user) {
+  //   return <p>a</p>;
+  // }
 
   return (
     <div className={styles.container}>
@@ -32,10 +37,6 @@ export default function BrowsePage() {
         <div className={styles.user}>
           <Image src={`/images/users/${user?.photoURL}.png`} alt={`User Profile from ${user?.displayName}`} width={320} height={320} />
           <p>{user?.displayName}</p>
-        </div>
-        <div className={styles.user}>
-          <Image src='/images/users/2.png' alt='User Profile' width={320} height={320} />
-          <p>Ely</p>
         </div>
         <div className={styles.user}>
           <Image src='/images/users/3.png' alt='User Profile' width={320} height={320} />

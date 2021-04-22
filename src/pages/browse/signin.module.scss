@@ -34,6 +34,10 @@
         &:hover {
           outline: auto;
         }
+
+        // & + p:hover {
+        //     color: colors.$white;
+        // }
       }
     }
 
@@ -41,6 +45,11 @@
       text-align: center;
       font-size: 1.5rem;
       margin-top: 10px;
+      color: colors.$grey;
+
+      &:hover {
+        color: colors.$white;
+      }
     }
   }
 
