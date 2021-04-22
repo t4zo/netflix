@@ -17,7 +17,7 @@
     width: 90vw;
     margin: auto;
     padding: 30px;
-    background-color: colors.$dark-background-light;
+    background-color: colors.$background-light;
     margin-top: 40px;
     margin-bottom: 50px;
 
@@ -72,7 +72,7 @@
       align-items: center;
 
       font-size: 13px;
-      color: colors.$gray-light;
+      color: colors.$grey-light;
 
       .rememberMe {
         display: flex;
@@ -84,14 +84,14 @@
       }
 
       a {
-        color: colors.$gray-light;
+        color: colors.$grey-light;
       }
     }
 
     .formFooter {
       margin: 70px 0;
       font-size: 13px;
-      color: colors.$gray-dark;
+      color: colors.$grey-dark;
 
       .connectFacebook {
         margin-bottom: 20px;

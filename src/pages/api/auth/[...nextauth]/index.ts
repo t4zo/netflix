@@ -33,8 +33,6 @@ export default NextAuth({
               email: response.user.email!,
             };
 
-            console.log('user')
-
             return user;
           }
 

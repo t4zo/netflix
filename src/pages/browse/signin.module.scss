@@ -1,0 +1,67 @@
+@use 'styles/colors';
+
+.container {
+  height: 100vh;
+  width: 100vw;
+  display: grid;
+  place-content: center;
+
+  h1 {
+    font-size: 3rem;
+    color: colors.$white;
+    text-align: center;
+    letter-spacing: 2px;
+  }
+
+  .users {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    border-radius: 20px;
+    margin-bottom: 8rem;
+
+    .user {
+      width: 192px;
+      height: 192px;
+
+      &:hover {
+        cursor: pointer;
+        color: colors.$white-light;
+      }
+
+      img {
+        &:hover {
+          outline: auto;
+        }
+      }
+    }
+
+    p {
+      text-align: center;
+      font-size: 1.5rem;
+      margin-top: 10px;
+    }
+  }
+
+  .action {
+    display: flex;
+    justify-content: center;
+
+    a {
+      // width: fit-content;
+      text-align: center;
+      font-size: 1.3rem;
+      color: colors.$grey;
+      padding: 14px 50px;
+      border: 1px solid colors.$grey;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+
+      &:hover {
+        cursor: pointer;
+        color: colors.$white-light;
+      }
+    }
+  }
+}

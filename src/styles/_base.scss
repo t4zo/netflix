@@ -6,5 +6,10 @@
   border: 0;
   box-sizing: border-box;
 
-  color: colors.$white;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  background-color: #141414;
+  color: grey;
 }

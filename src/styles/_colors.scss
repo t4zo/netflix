@@ -2,16 +2,20 @@
 
 $white: #FFF;
 $white-light: #E5E5E5;
+
 $primary: #E50914;
 $primary-light: #9D0D0D;
-$secondary: #000;
+
+$secondary: #141414;
 $secondary-light: rgb(39, 38, 38);
 
-$divider: #303030;
-$gray-darker: #757575;
-$gray-dark: #8c8c8c;
-$gray-light: #b3b3b3;
+$background-light: rgba($color: black, $alpha: 0.7);
 
-$dark-background-light: rgba($color: black, $alpha: 0.7);
+$divider: #303030;
+
+$grey-light: #b3b3b3;
+$grey: #808080;
+$grey-darker: #757575;
+$grey-dark: #8c8c8c;
 
 $blue-light: #0071eb;

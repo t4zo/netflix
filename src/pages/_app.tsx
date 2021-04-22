@@ -5,7 +5,7 @@ import { FirebaseContext } from 'contexts/firebaseContext';
 import { Provider } from 'next-auth/client';
 import { getFirebaseInstance } from 'libs/firebase';
 
-import { GlobalStyles } from 'globalStyles';
+// import { GlobalStyles } from 'globalStyles';
 import { ThemeProvider } from 'styled-components';
 import theme from 'styles/theme';
 
@@ -18,7 +18,7 @@ export default function MyApp({ Component, pageProps }: AppProps) {
   return (
     <FirebaseContext.Provider value={{ firebase: getFirebaseInstance() }}>
       <Provider session={pageProps.session}>
-        <GlobalStyles />
+        {/* <GlobalStyles /> */}
         <Head>
           <meta charSet='utf-8' />
           <meta name='viewport' content='width=device-width, initial-scale=1' />
