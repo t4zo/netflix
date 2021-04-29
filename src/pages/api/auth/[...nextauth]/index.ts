@@ -14,6 +14,23 @@ export default NextAuth({
     // maxAge: 30 * 24 * 60 * 60, // 30 days
     maxAge: 60 * 60, // 1 hour
   },
+  callbacks: {
+    async session(session, _) {
+      const firebase = getFirebaseInstance();
+      const firebaseAuth = firebase.auth();
+      
+      if(session.user) {
+        session.user.name = firebaseAuth.currentUser?.displayName;
+        session.user.image = firebaseAuth.currentUser?.photoURL;
+
+        // Custom properties
+        // @ts-ignore
+        session.user.customProperty = 'Custom Property';
+      }
+
+      return session;
+    }
+  },
   providers: [
     providers.Credentials({
       async authorize({ email, password }: Record<string, string>): Promise<IUser | null> {

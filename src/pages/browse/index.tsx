@@ -5,16 +5,15 @@ import Link from 'next/link';
 import Image from 'next/image';
 
 import styles from './signin.module.scss';
-import { useAuthListener, useContent } from 'hooks';
+import { useContent } from 'hooks';
 import genreFilter from 'utils/genre-filter';
 
 export default function BrowsePage() {
   const [session, loading] = useSession();
-  const { user } = useAuthListener();
   const { films } = useContent('films');
   const { series } = useContent('series');
   const slides = genreFilter({ series, films });
-  console.log(slides)
+  console.log(slides);
 
   useEffect(() => {
     if (!loading && !session) {
@@ -23,20 +22,21 @@ export default function BrowsePage() {
   }, [loading]);
 
   if (loading || !session) {
-    return <p style={{ textAlign: 'center' }}>Carregando...</p>;
+    return (
+      <>
+        <div style={{ display: 'grid', placeContent: 'center' }}></div>
+        <p style={{ textAlign: 'center' }}>Carregando...</p>
+      </>
+    );
   }
-
-  // if (!user) {
-  //   return <p>a</p>;
-  // }
 
   return (
     <div className={styles.container}>
       <h1>Who's watching?</h1>
       <div className={styles.users}>
         <div className={styles.user}>
-          <Image src={`/images/users/${user?.photoURL}.png`} alt={`User Profile from ${user?.displayName}`} width={320} height={320} />
-          <p>{user?.displayName}</p>
+          <Image src={`/images/users/${session.user?.image}.png`} alt={`User Profile from ${session.user?.name}`} width={320} height={320} />
+          <p>{session.user?.name}</p>
         </div>
         <div className={styles.user}>
           <Image src='/images/users/3.png' alt='User Profile' width={320} height={320} />

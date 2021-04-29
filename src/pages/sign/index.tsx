@@ -59,7 +59,7 @@ export default function SignPage() {
         email,
         password,
       });
-      // await firebase.auth().signInWithEmailAndPassword(email, password);
+
       if(response) {
         Router.push('/browse');
       }
