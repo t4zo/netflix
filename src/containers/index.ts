@@ -1,0 +1,1 @@
+export { default as HeroContainer } from 'containers/hero-container';

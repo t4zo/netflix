@@ -1,11 +1,11 @@
 import { ChangeEvent, useState, useContext, FormEvent } from 'react';
-import Image from 'next/image';
-import { Input, SignFooter } from 'components';
+import Router from 'next/router';
+import { signIn } from 'next-auth/client';
+import { Input, SignFooter, Header } from 'components';
+import { HeroContainer } from 'containers';
 
 import styles from './sign.module.scss';
 import { FirebaseContext } from 'contexts/firebaseContext';
-import Router from 'next/router';
-import { signIn } from 'next-auth/client';
 
 interface PageState {
   firstName?: string;
@@ -60,7 +60,7 @@ export default function SignPage() {
         password,
       });
 
-      if(response) {
+      if (response) {
         Router.push('/browse');
       }
     } catch (error) {
@@ -101,57 +101,57 @@ export default function SignPage() {
 
   return (
     <div className={styles.container}>
-      <div className={styles.logo}>
-        <Image src='/images/logo.svg' alt='Netflix logo' width={167} height={45} />
-      </div>
-      <div className={styles.inner}>
-        <form onSubmit={handleSubmit}>
-          <h1>Sign {isSignInPageMode ? 'In' : 'Up'}</h1>
-          {!isValid && formInputs.error && <p className={styles.errorMessage}>{formInputs.error}</p>}
-          <div className={styles.inputContainer}>
-          {!isSignInPageMode && (
+      <HeroContainer>
+        <Header />
+        <div className={styles.inner}>
+          <form onSubmit={handleSubmit}>
+            <h1>Sign {isSignInPageMode ? 'In' : 'Up'}</h1>
+            {!isValid && formInputs.error && <p className={styles.errorMessage}>{formInputs.error}</p>}
+            <div className={styles.inputContainer}>
+              {!isSignInPageMode && (
+                <Input
+                  type='text'
+                  name='firstName'
+                  placeholder='First Name'
+                  value={formInputs.firstName!}
+                  onChange={(e: ChangeEvent<HTMLInputElement>) => setFormInputs({ ...formInputs, firstName: e.target.value })}
+                />
+              )}
               <Input
-                type='text'
-                name='firstName'
-                placeholder='First Name'
-                value={formInputs.firstName!}
-                onChange={(e: ChangeEvent<HTMLInputElement>) => setFormInputs({ ...formInputs, firstName: e.target.value })}
+                type='email'
+                name='email'
+                placeholder='Email or phone'
+                value={formInputs.email}
+                onChange={(e: ChangeEvent<HTMLInputElement>) => setFormInputs({ ...formInputs, email: e.target.value })}
               />
-            )}
-            <Input
-              type='email'
-              name='email'
-              placeholder='Email or phone'
-              value={formInputs.email}
-              onChange={(e: ChangeEvent<HTMLInputElement>) => setFormInputs({ ...formInputs, email: e.target.value })}
-            />
-            <Input
-              type='password'
-              name='password'
-              placeholder='Password'
-              value={formInputs.password}
-              onChange={(e: ChangeEvent<HTMLInputElement>) => setFormInputs({ ...formInputs, password: e.target.value })}
-            />
-          </div>
-          <button className={styles.signIn} disabled={!isValid}>
-            Sign {isSignInPageMode ? 'In' : 'Up'}
-          </button>
-          <div className={styles.actions}>
-            <div className={styles.rememberMe}>
-              <input type='checkbox' id='rememberMe' />
-              <label htmlFor='rememberMe'>Remember me</label>
+              <Input
+                type='password'
+                name='password'
+                placeholder='Password'
+                value={formInputs.password}
+                onChange={(e: ChangeEvent<HTMLInputElement>) => setFormInputs({ ...formInputs, password: e.target.value })}
+              />
             </div>
-            <a href='#'>Need help?</a>
+            <button className={styles.signIn} disabled={!isValid}>
+              Sign {isSignInPageMode ? 'In' : 'Up'}
+            </button>
+            <div className={styles.actions}>
+              <div className={styles.rememberMe}>
+                <input type='checkbox' id='rememberMe' />
+                <label htmlFor='rememberMe'>Remember me</label>
+              </div>
+              <a href='#'>Need help?</a>
+            </div>
+          </form>
+          <div className={styles.formFooter}>
+            <p className={styles.connectFacebook}>Connect with Facebook</p>
+            {signInAndUp}
+            <p className={styles.learnMore}>
+              This page is protected by Google reCAPTCHA to ensure that you is not a robot. <a href='#'>Learn more.</a>
+            </p>
           </div>
-        </form>
-        <div className={styles.formFooter}>
-          <p className={styles.connectFacebook}>Connect with Facebook</p>
-          {signInAndUp}
-          <p className={styles.learnMore}>
-            This page is protected by Google reCAPTCHA to ensure that you is not a robot. <a href='#'>Learn more.</a>
-          </p>
         </div>
-      </div>
+      </HeroContainer>
       <SignFooter />
     </div>
   );

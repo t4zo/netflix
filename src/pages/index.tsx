@@ -1,8 +1,12 @@
 import { useState } from 'react';
-import { Layout, Header, Jumbotron, Footer, Faq } from 'components';
+import Link from 'next/link';
+import { getSession } from 'next-auth/client';
+import { Layout, Header, Jumbotron, Footer, Faq, OptInForm } from 'components';
+import { HeroContainer } from 'containers';
 
 import jumboData from 'fixtures/jumbo.json';
-import { getSession } from 'next-auth/client';
+
+import styles from './styles.module.scss';
 
 export default function IndexPage() {
   const [isVisible, setIsVisible] = useState(true);
@@ -20,7 +24,22 @@ export default function IndexPage() {
 
   return (
     <Layout title='Netflix'>
-      <Header />
+      <HeroContainer>
+        <Header>
+          <select name='language' className={styles.language}>
+            <option value='pt-BR'>Português</option>
+            <option value='en-US'>English</option>
+          </select>
+          <Link href='/sign'>
+            <a className={styles.signIn}>Sign In</a>
+          </Link>
+        </Header>
+        <section className={styles.inner}>
+          <h1>Unlimited films, TV programmes and more.</h1>
+          <p>Watch anywhere. Cancel any time.</p>
+          <OptInForm />
+        </section>
+      </HeroContainer>
       {jumboData.map((item) => (
         <Jumbotron key={item.id} item={item} />
       ))}

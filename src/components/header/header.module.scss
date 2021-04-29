@@ -1,74 +1,23 @@
 @use 'styles/colors';
 
 .container {
-  height: 750px;
-  background-image: url('/images/misc/home-bg.jpg');
-  border-bottom: 8px solid colors.$divider;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 92vw;
+  margin: auto;
+  padding-top: 30px;
 
-  nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    max-width: 92vw;
-    margin: auto;
-    padding-top: 30px;
+  .logo {
+    height: 32px;
+    width: 108px;
+    text-transform: uppercase;
+    color: colors.$primary;
+    font-size: 50px;
+    margin-right: auto;
 
-    .logo {
-      height: 32px;
-      width: 108px;
-      text-transform: uppercase;
+    .svg-icon {
       color: colors.$primary;
-      font-size: 50px;
-      margin-right: auto;
-
-      .svg-icon{
-        color: colors.$primary;
-
-      }
-    }
-
-    .language {
-      margin-right: 30px;
-      background-color: colors.$secondary;
-      border: 1px solid colors.$white;
-      color: colors.$white;
-      padding: 7px;
-      border-radius: 2px;
-      font-size: 15px;
-    }
-
-    .signIn {
-      background-color: colors.$primary;
-      color: colors.$white;
-      padding: 8px 12px;
-      border-radius: 3px;
-    }
-  }
-
-  .inner {
-    max-width: 80%;
-    margin: auto;
-    text-align: center;
-
-    h1 {
-      font-size: 54px;
-    }
-
-    p {
-      font-size: 16px;
-      letter-spacing: 1.1px;
-    }
-
-    @media (min-width: 1000px) {
-    max-width: 40%;
-
-    h1 {
-        font-size: 72px;
-      }
-
-      p {
-        font-size: 26px;
-      }
     }
   }
 }
