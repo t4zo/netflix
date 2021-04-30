@@ -7,3 +7,5 @@ export { default as OptInForm } from 'components/opt-in-form';
 export { default as Header } from 'components/header';
 export { default as Input } from 'components/input';
 export { default as SignFooter } from 'components/sign-footer';
+export { default as SelectProfile } from 'components/select-profile';
+export { default as Loading } from 'components/loading';

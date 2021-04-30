@@ -1,14 +1,15 @@
-import { useEffect } from 'react';
-import { useSession } from 'next-auth/client';
+import { useEffect, useState } from 'react';
 import Router from 'next/router';
-import Link from 'next/link';
-import Image from 'next/image';
+import { DefaultSession } from 'next-auth';
+import { useSession } from 'next-auth/client';
 
-import styles from './signin.module.scss';
 import { useContent } from 'hooks';
 import genreFilter from 'utils/genre-filter';
+import { SelectProfile, Loading } from 'components';
 
 export default function BrowsePage() {
+  const [selectProfileLoading, setSelectProfileLoading] = useState(false);
+  const [profile, setProfile] = useState<DefaultSession>();
   const [session, loading] = useSession();
   const { films } = useContent('films');
   const { series } = useContent('series');
@@ -21,35 +22,29 @@ export default function BrowsePage() {
     }
   }, [loading]);
 
-  if (loading || !session) {
-    return (
-      <>
-        <div style={{ display: 'grid', placeContent: 'center' }}></div>
-        <p style={{ textAlign: 'center' }}>Carregando...</p>
-      </>
-    );
+  function handleUserProfile() {
+    const user = {
+      name: session?.user?.name,
+      email: session?.user?.email,
+      image: session?.user?.image,
+    };
+
+    setSelectProfileLoading(true);
+
+    setTimeout(() => {
+      setProfile({
+        user,
+        expires: session?.expires,
+      });
+      setSelectProfileLoading(false);
+    }, 2000);
   }
 
-  return (
-    <div className={styles.container}>
-      <h1>Who's watching?</h1>
-      <div className={styles.users}>
-        <div className={styles.user}>
-          <Image src={`/images/users/${session.user?.image}.png`} alt={`User Profile from ${session.user?.name}`} width={320} height={320} />
-          <p>{session.user?.name}</p>
-        </div>
-        <div className={styles.user}>
-          <Image src='/images/users/3.png' alt='User Profile' width={320} height={320} />
-          <p>Add profile</p>
-        </div>
-      </div>
-      <div className={styles.action}>
-        <Link href='#'>
-          <a>Manage Profiles</a>
-        </Link>
-      </div>
-    </div>
-  );
+  if (selectProfileLoading) {
+    return <Loading src={session?.user?.image} />;
+  }
+
+  return profile ? <p>Done</p> : <SelectProfile handleUserProfile={handleUserProfile} />;
 }
 
 // export async function getServerSideProps(context: any) {

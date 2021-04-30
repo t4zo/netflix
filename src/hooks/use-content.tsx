@@ -16,7 +16,7 @@ export default function useContent(target: string) {
 
         setContent(content);
       } catch (error) {
-        console.log(error.message);
+        console.error(error.message);
       }
     }
     fetchContent();
