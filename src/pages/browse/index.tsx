@@ -9,7 +9,7 @@ import Link from 'next/link';
 import { SelectProfile, Loading, Header, Search } from 'components';
 import { HeaderContainer } from 'containers';
 
-import styles from './signin.module.scss';
+import styles from './browse.module.scss';
 
 export default function BrowsePage() {
   const [selectProfileLoading, setSelectProfileLoading] = useState(false);
@@ -87,12 +87,19 @@ export default function BrowsePage() {
           In Gotham City, mentally troubled comedian Arthur Fleck is disregarded and mistreated by society. He then embarks on a downward spiral of revolution
           and bloody crime. This path brings him face-to-face with his alter-ego: the Joker.
         </p>
-        <Link href='/play'>
-          <a className={styles.watch}>Watch</a>
-        </Link>
-        <Link href='/info'>
-          <a className={styles.moreInfo}>More info</a>
-        </Link>
+        <div className={styles.actionsWrapper}>
+          <Link href='/play'>
+            <div className={styles.play}>
+              <svg viewBox='0 0 24 24' height='30px' width='30px'>
+                <path d='M6 4l15 8-15 8z' fill='currentColor'></path>
+              </svg>
+              <a>Play</a>
+            </div>
+          </Link>
+          <Link href='/info'>
+            <a className={styles.moreInfo}>More info</a>
+          </Link>
+        </div>
       </div>
     </HeaderContainer>
   );
