@@ -9,7 +9,7 @@ export default function Loading({ src }: Props) {
   return (
     <div className={styles.container}>
       <div className={styles.spinner}>
-        <Image src={`/images/users/${src}.png`} width={75} height={75} />
+        <Image src={`/images/users/${src}.png`} width={50} height={50} />
       </div>
     </div>
   );

@@ -6,13 +6,14 @@ import Link from 'next/link';
 
 // import { useContent } from 'hooks';
 // import genreFilter from 'utils/genre-filter';
-import { SelectProfile, Loading, Header } from 'components';
+import { SelectProfile, Loading, Header, Search } from 'components';
 import { HeaderContainer } from 'containers';
 
 import styles from './signin.module.scss';
 
 export default function BrowsePage() {
   const [selectProfileLoading, setSelectProfileLoading] = useState(false);
+  const [searchTerm, setSearchTerm] = useState('');
   const [dropDownActive, setDropDownActive] = useState(false);
   const [profile, setProfile] = useState<DefaultSession>();
   const [session, loading] = useSession();
@@ -41,6 +42,7 @@ export default function BrowsePage() {
         user,
         expires: session?.expires,
       });
+
       setSelectProfileLoading(false);
     }, 2000);
   }
@@ -56,11 +58,15 @@ export default function BrowsePage() {
   return (
     <HeaderContainer>
       <Header browseHeader={true}>
+        <Search searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
         <Link href='/infantil'>
           <a className={styles.primaryNavigationItem}>Infantil</a>
         </Link>
         <div className={styles.profile}>
-          <img src={`images/users/${profile.user?.image!}.png`} className={styles.profilePicture} onClick={() => setDropDownActive(prevState => !prevState)}></img>
+          <img
+            src={`images/users/${profile.user?.image!}.png`}
+            className={styles.profilePicture}
+            onClick={() => setDropDownActive((prevState) => !prevState)}></img>
           {dropDownActive && (
             <div className={styles.dropdown}>
               <div className={styles.dropdownItem}>

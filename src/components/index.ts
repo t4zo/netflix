@@ -9,3 +9,4 @@ export { default as Input } from 'components/input';
 export { default as SignFooter } from 'components/sign-footer';
 export { default as SelectProfile } from 'components/select-profile';
 export { default as Loading } from 'components/loading';
+export { default as Search } from 'components/search';

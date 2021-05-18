@@ -1,0 +1,35 @@
+@use 'styles/colors';
+
+.search {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .searchIcon {
+    margin-right: 10px;
+    color: colors.$white;
+    cursor: pointer;
+    filter: brightness(0) invert(1);
+  }
+
+  .searchInput {
+    margin-right: 20px;
+    background-color: colors.$background-light;
+    color: colors.$white;
+    border: 1px solid colors.$white;
+    padding: 5px;
+    transition: width 0.3s;
+    height: 20px;
+    font-size: 14px;
+    font-weight: 600;
+
+    &::placeholder {
+      color: #ADADAD;
+      font-weight: 500;
+    }
+  }
+
+  @media (max-width: 700px) {
+    display: none;
+  }
+}
