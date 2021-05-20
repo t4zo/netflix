@@ -16,7 +16,7 @@ export default function BrowsePage() {
   const [contentType, setContentType] = useState(SERIES)
   const [dropDownActive, setDropDownActive] = useState(false);
   const [profile, setProfile] = useState<DefaultSession>();
-  const [session, _] = useSession();
+  const [session] = useSession();
 
   // useEffect(() => {
   //   if (!loading && !session) {
