@@ -27,8 +27,8 @@ export default function IndexPage() {
       <HeroContainer>
         <Header>
           <select name='language' className={styles.language}>
-            <option value='pt-BR'>Português</option>
             <option value='en-US'>English</option>
+            <option value='pt-BR'>Português</option>
           </select>
           <Link href='/sign'>
             <a className={styles.signIn}>Sign In</a>

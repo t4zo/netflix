@@ -5,7 +5,7 @@ import { Input, SignFooter, Header } from 'components';
 import { HeroContainer } from 'containers';
 
 import styles from './sign.module.scss';
-import { FirebaseContext } from 'contexts/firebaseContext';
+import FirebaseContext from 'contexts/firebaseContext';
 
 interface PageState {
   firstName?: string;

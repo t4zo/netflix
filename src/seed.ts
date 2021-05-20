@@ -1,5 +1,6 @@
 import { getFirebaseInstance } from './libs/firebase';
 import { IMedia } from 'interfaces';
+import { SERIES, FILMS } from './constants';
 
 function generateUUID() {
   return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, (c) => {
@@ -12,6 +13,7 @@ function generateUUID() {
 async function seedDocument(name: string, data: IMedia[]) {
   const firebase = getFirebaseInstance();
   const snapshot = await firebase.firestore().collection(name).get();
+  // console.log(`Snapshot ${name}: ${snapshot.docs.length}`);
   if (snapshot.docs.length !== 0) {
     return;
   }
@@ -467,8 +469,8 @@ export async function seedDatabase() {
     },
   ];
 
-  await seedDocument('series', series);
-  await seedDocument('films', films);
+  await seedDocument(SERIES, series);
+  await seedDocument(FILMS, films);
 }
 
 /*
@@ -476,7 +478,7 @@ function seedAllInOne() {
   // Series
   //  ============================================
   // Documentaries
-  firebase.firestore().collection('series').add({
+  firebase.firestore().collection(SERIES).add({
     id: generateUUID(),
     title: 'Tiger King',
     description: 'An exploration of big cat breeding and its bizarre underworld, populated by eccentric characters.',
@@ -484,7 +486,7 @@ function seedAllInOne() {
     maturity: '18',
     slug: 'tiger-king',
   });
-  firebase.firestore().collection('series').add({
+  firebase.firestore().collection(SERIES).add({
     id: generateUUID(),
     title: 'Amanda Knox',
     description: 'Amanda Marie Knox is an American woman who spent almost four years in an Italian prison.',
@@ -492,7 +494,7 @@ function seedAllInOne() {
     maturity: '12',
     slug: 'amanda-knox',
   });
-  firebase.firestore().collection('series').add({
+  firebase.firestore().collection(SERIES).add({
     id: generateUUID(),
     title: 'Citizenfour',
     description: 'Citizenfour is a 2014 documentary film directed by Laura Poitras, concerning Edward Snowden and the NSA spying scandal.',
@@ -500,7 +502,7 @@ function seedAllInOne() {
     maturity: '12',
     slug: 'citizenfour',
   });
-  firebase.firestore().collection('series').add({
+  firebase.firestore().collection(SERIES).add({
     id: generateUUID(),
     title: 'Super Size Me',
     description: "Director Morgan Spurlock's social experiment in fast-food gastronomy sees him attempting to subsist uniquely on food from the McDonalds",
@@ -508,7 +510,7 @@ function seedAllInOne() {
     maturity: '12',
     slug: 'super-size-me',
   });
-  firebase.firestore().collection('series').add({
+  firebase.firestore().collection(SERIES).add({
     id: generateUUID(),
     title: 'Man on Wire',
     description: "Filmmaker James Marsh masterfully recreates high-wire daredevil Philippe Petit's 1974 stunt walking on a wire across the Twin Towers.",
@@ -518,7 +520,7 @@ function seedAllInOne() {
   });
 
   // Comedies
-  firebase.firestore().collection('series').add({
+  firebase.firestore().collection(SERIES).add({
     id: generateUUID(),
     title: 'The Office',
     description:
@@ -527,7 +529,7 @@ function seedAllInOne() {
     maturity: '15',
     slug: 'the-office',
   });
-  firebase.firestore().collection('series').add({
+  firebase.firestore().collection(SERIES).add({
     id: generateUUID(),
     title: 'Arrested Development',
     description: 'The Bluth family, once a prominent name in the business, loses everything after the head patriarch gets convicted for fraud.',
@@ -535,7 +537,7 @@ function seedAllInOne() {
     maturity: '15',
     slug: 'arrested-development',
   });
-  firebase.firestore().collection('series').add({
+  firebase.firestore().collection(SERIES).add({
     id: generateUUID(),
     title: 'Curb Your Enthusiasm',
     description:
@@ -544,7 +546,7 @@ function seedAllInOne() {
     maturity: '15',
     slug: 'curb-your-enthusiasm',
   });
-  firebase.firestore().collection('series').add({
+  firebase.firestore().collection(SERIES).add({
     id: generateUUID(),
     title: 'Family Guy',
     description:
@@ -553,7 +555,7 @@ function seedAllInOne() {
     maturity: '15',
     slug: 'family-guy',
   });
-  firebase.firestore().collection('series').add({
+  firebase.firestore().collection(SERIES).add({
     id: generateUUID(),
     title: 'South Park',
     description:
@@ -564,7 +566,7 @@ function seedAllInOne() {
   });
 
   // Children
-  firebase.firestore().collection('series').add({
+  firebase.firestore().collection(SERIES).add({
     id: generateUUID(),
     title: 'Peppa Pig',
     description:
@@ -573,7 +575,7 @@ function seedAllInOne() {
     maturity: '0',
     slug: 'peppa-pig',
   });
-  firebase.firestore().collection('series').add({
+  firebase.firestore().collection(SERIES).add({
     id: generateUUID(),
     title: 'Dora The Explorer',
     description:
@@ -582,7 +584,7 @@ function seedAllInOne() {
     maturity: '0',
     slug: 'dora-the-explorer',
   });
-  firebase.firestore().collection('series').add({
+  firebase.firestore().collection(SERIES).add({
     id: generateUUID(),
     title: 'PAW Patrol',
     description:
@@ -591,7 +593,7 @@ function seedAllInOne() {
     maturity: '0',
     slug: 'paw-patrol',
   });
-  firebase.firestore().collection('series').add({
+  firebase.firestore().collection(SERIES).add({
     id: generateUUID(),
     title: 'Arthur',
     description:
@@ -600,7 +602,7 @@ function seedAllInOne() {
     maturity: '0',
     slug: 'arthur',
   });
-  firebase.firestore().collection('series').add({
+  firebase.firestore().collection(SERIES).add({
     id: generateUUID(),
     title: 'SpongeBob',
     description: 'A yellow sea sponge named SpongeBob SquarePants lives in the city of Bikini Bottom deep in the Pacific Ocean. ',
@@ -610,7 +612,7 @@ function seedAllInOne() {
   });
 
   // Crime
-  firebase.firestore().collection('series').add({
+  firebase.firestore().collection(SERIES).add({
     id: generateUUID(),
     title: 'Making a Murderer',
     description:
@@ -619,7 +621,7 @@ function seedAllInOne() {
     maturity: '18',
     slug: 'making-a-murderer',
   });
-  firebase.firestore().collection('series').add({
+  firebase.firestore().collection(SERIES).add({
     id: generateUUID(),
     title: 'Long Shot',
     description: 'An innocent man is accused of murder, leading his attorney on a wild chase to confirm his alibi using raw footage from a television show.',
@@ -627,7 +629,7 @@ function seedAllInOne() {
     maturity: '18',
     slug: 'long-shot',
   });
-  firebase.firestore().collection('series').add({
+  firebase.firestore().collection(SERIES).add({
     id: generateUUID(),
     title: 'The Confession Killer',
     description:
@@ -636,7 +638,7 @@ function seedAllInOne() {
     maturity: '18',
     slug: 'the-confession-killer',
   });
-  firebase.firestore().collection('series').add({
+  firebase.firestore().collection(SERIES).add({
     id: generateUUID(),
     title: 'The Innocent Man',
     description:
@@ -645,7 +647,7 @@ function seedAllInOne() {
     maturity: '18',
     slug: 'the-innocent-man',
   });
-  firebase.firestore().collection('series').add({
+  firebase.firestore().collection(SERIES).add({
     id: generateUUID(),
     title: 'The Staircase',
     description:
@@ -656,7 +658,7 @@ function seedAllInOne() {
   });
 
   // Feel-good
-  firebase.firestore().collection('series').add({
+  firebase.firestore().collection(SERIES).add({
     id: generateUUID(),
     title: 'Good Will Hunting',
     description:
@@ -665,7 +667,7 @@ function seedAllInOne() {
     maturity: '12',
     slug: 'good-will-hunting',
   });
-  firebase.firestore().collection('series').add({
+  firebase.firestore().collection(SERIES).add({
     id: generateUUID(),
     title: 'Forrest Gump',
     description:
@@ -674,7 +676,7 @@ function seedAllInOne() {
     maturity: '12',
     slug: 'forrest-gump',
   });
-  firebase.firestore().collection('series').add({
+  firebase.firestore().collection(SERIES).add({
     id: generateUUID(),
     title: 'Juno',
     description:
@@ -683,7 +685,7 @@ function seedAllInOne() {
     maturity: '12',
     slug: 'juno',
   });
-  firebase.firestore().collection('series').add({
+  firebase.firestore().collection(SERIES).add({
     id: generateUUID(),
     title: 'Midnight In Paris',
     description:
@@ -692,7 +694,7 @@ function seedAllInOne() {
     maturity: '12',
     slug: 'midnight-in-paris',
   });
-  firebase.firestore().collection('series').add({
+  firebase.firestore().collection(SERIES).add({
     id: generateUUID(),
     title: 'School of Rock',
     description:
@@ -705,7 +707,7 @@ function seedAllInOne() {
   // Films
   //  ============================================
   // Drama
-  firebase.firestore().collection('films').add({
+  firebase.firestore().collection(FILMS).add({
     id: generateUUID(),
     title: 'The Prestige',
     description:
@@ -714,7 +716,7 @@ function seedAllInOne() {
     maturity: '15',
     slug: 'the-prestige',
   });
-  firebase.firestore().collection('films').add({
+  firebase.firestore().collection(FILMS).add({
     id: generateUUID(),
     title: 'Fight Club',
     description:
@@ -723,7 +725,7 @@ function seedAllInOne() {
     maturity: '15',
     slug: 'fight-club',
   });
-  firebase.firestore().collection('films').add({
+  firebase.firestore().collection(FILMS).add({
     id: generateUUID(),
     title: 'Kings Speech',
     description:
@@ -732,7 +734,7 @@ function seedAllInOne() {
     maturity: '15',
     slug: 'kings-speech',
   });
-  firebase.firestore().collection('films').add({
+  firebase.firestore().collection(FILMS).add({
     id: generateUUID(),
     title: 'The Revenant',
     description:
@@ -741,7 +743,7 @@ function seedAllInOne() {
     maturity: '15',
     slug: 'the-revenant',
   });
-  firebase.firestore().collection('films').add({
+  firebase.firestore().collection(FILMS).add({
     id: generateUUID(),
     title: 'The Social Network',
     description:
@@ -752,7 +754,7 @@ function seedAllInOne() {
   });
 
   // Suspense
-  firebase.firestore().collection('films').add({
+  firebase.firestore().collection(FILMS).add({
     id: generateUUID(),
     title: 'Shutter Island',
     description:
@@ -761,7 +763,7 @@ function seedAllInOne() {
     maturity: '15',
     slug: 'shutter-island',
   });
-  firebase.firestore().collection('films').add({
+  firebase.firestore().collection(FILMS).add({
     id: generateUUID(),
     title: 'Gone Girl',
     description:
@@ -770,7 +772,7 @@ function seedAllInOne() {
     maturity: '15',
     slug: 'gone-girl',
   });
-  firebase.firestore().collection('films').add({
+  firebase.firestore().collection(FILMS).add({
     id: generateUUID(),
     title: 'Prisoners',
     description:
@@ -779,7 +781,7 @@ function seedAllInOne() {
     maturity: '15',
     slug: 'prisoners',
   });
-  firebase.firestore().collection('films').add({
+  firebase.firestore().collection(FILMS).add({
     id: generateUUID(),
     title: 'Seven',
     description:
@@ -788,7 +790,7 @@ function seedAllInOne() {
     maturity: '15',
     slug: 'seven',
   });
-  firebase.firestore().collection('films').add({
+  firebase.firestore().collection(FILMS).add({
     id: generateUUID(),
     title: 'Zodiac',
     description:
@@ -799,7 +801,7 @@ function seedAllInOne() {
   });
 
   // Children
-  firebase.firestore().collection('films').add({
+  firebase.firestore().collection(FILMS).add({
     id: generateUUID(),
     title: 'Hotel Transylvania',
     description: 'Dracula, who owns a high-end resort for monsters, attempts to keep his daughter from falling in love with Jonathan, a human.',
@@ -807,7 +809,7 @@ function seedAllInOne() {
     maturity: '0',
     slug: 'hotel-transylvania',
   });
-  firebase.firestore().collection('films').add({
+  firebase.firestore().collection(FILMS).add({
     id: generateUUID(),
     title: 'Despicable Me',
     description:
@@ -816,7 +818,7 @@ function seedAllInOne() {
     maturity: '0',
     slug: 'despicable-me',
   });
-  firebase.firestore().collection('films').add({
+  firebase.firestore().collection(FILMS).add({
     id: generateUUID(),
     title: 'Frozen',
     description:
@@ -825,7 +827,7 @@ function seedAllInOne() {
     maturity: '0',
     slug: 'frozen',
   });
-  firebase.firestore().collection('films').add({
+  firebase.firestore().collection(FILMS).add({
     id: generateUUID(),
     title: 'Spirited Away',
     description:
@@ -834,7 +836,7 @@ function seedAllInOne() {
     maturity: '0',
     slug: 'spirited-away',
   });
-  firebase.firestore().collection('films').add({
+  firebase.firestore().collection(FILMS).add({
     id: generateUUID(),
     title: 'Up',
     description: "Carl, an old widower, goes off on an adventure in his flying house in search of Paradise Falls, his wife's dream destination.",
@@ -844,7 +846,7 @@ function seedAllInOne() {
   });
 
   // Thriller
-  firebase.firestore().collection('films').add({
+  firebase.firestore().collection(FILMS).add({
     id: generateUUID(),
     title: 'Joker',
     description: 'Forever alone in a crowd, failed comedian Arthur Fleck seeks connection as he walks the streets of Gotham City.',
@@ -852,7 +854,7 @@ function seedAllInOne() {
     maturity: '15',
     slug: 'joker',
   });
-  firebase.firestore().collection('films').add({
+  firebase.firestore().collection(FILMS).add({
     id: generateUUID(),
     title: 'A Quiet Place',
     description:
@@ -861,7 +863,7 @@ function seedAllInOne() {
     maturity: '15',
     slug: 'a-quiet-place',
   });
-  firebase.firestore().collection('films').add({
+  firebase.firestore().collection(FILMS).add({
     id: generateUUID(),
     title: 'Black Swan',
     description:
@@ -870,7 +872,7 @@ function seedAllInOne() {
     maturity: '15',
     slug: 'black-swan',
   });
-  firebase.firestore().collection('films').add({
+  firebase.firestore().collection(FILMS).add({
     id: generateUUID(),
     title: 'Nightcrawler',
     description:
@@ -879,7 +881,7 @@ function seedAllInOne() {
     maturity: '15',
     slug: 'nightcrawler',
   });
-  firebase.firestore().collection('films').add({
+  firebase.firestore().collection(FILMS).add({
     id: generateUUID(),
     title: 'The Silence of The Lambs',
     description:
@@ -890,7 +892,7 @@ function seedAllInOne() {
   });
 
   // Romance
-  firebase.firestore().collection('films').add({
+  firebase.firestore().collection(FILMS).add({
     id: generateUUID(),
     title: 'A Star Is Born',
     description:
@@ -899,7 +901,7 @@ function seedAllInOne() {
     maturity: '15',
     slug: 'a-star-is-born',
   });
-  firebase.firestore().collection('films').add({
+  firebase.firestore().collection(FILMS).add({
     id: generateUUID(),
     title: 'Blue Valentine',
     description:
@@ -908,7 +910,7 @@ function seedAllInOne() {
     maturity: '15',
     slug: 'blue-valentine',
   });
-  firebase.firestore().collection('films').add({
+  firebase.firestore().collection(FILMS).add({
     id: generateUUID(),
     title: 'La La Land',
     description:
@@ -917,7 +919,7 @@ function seedAllInOne() {
     maturity: '15',
     slug: 'la-la-land',
   });
-  firebase.firestore().collection('films').add({
+  firebase.firestore().collection(FILMS).add({
     id: generateUUID(),
     title: 'The Notebook',
     description:
@@ -926,7 +928,7 @@ function seedAllInOne() {
     maturity: '15',
     slug: 'the-notebook',
   });
-  firebase.firestore().collection('films').add({
+  firebase.firestore().collection(FILMS).add({
     id: generateUUID(),
     title: 'Titanic',
     description:

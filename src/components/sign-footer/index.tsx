@@ -42,8 +42,8 @@ export default function SignFooter() {
           </ul>
 
           <select name='language' className={styles.language}>
-            <option value='pt-BR'>Português</option>
             <option value='en-US'>English</option>
+            <option value='pt-BR'>Português</option>
           </select>
         </div>
       </footer>

@@ -1,32 +1,28 @@
-import { useEffect, useState } from 'react';
-import Router from 'next/router';
-import { DefaultSession } from 'next-auth';
-import { signOut, useSession } from 'next-auth/client';
+import { useState } from 'react';
 import Link from 'next/link';
+import { DefaultSession } from 'next-auth';
+import { getSession, signOut, useSession } from 'next-auth/client';
 
-// import { useContent } from 'hooks';
-// import genreFilter from 'utils/genre-filter';
 import { SelectProfile, Loading, Header, Search } from 'components';
 import { HeaderContainer } from 'containers';
 
+import { SERIES, FILMS } from '../../constants';
+import { SeriesContent, FilmsContent } from 'contents';
 import styles from './browse.module.scss';
 
 export default function BrowsePage() {
   const [selectProfileLoading, setSelectProfileLoading] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
+  const [contentType, setContentType] = useState(SERIES)
   const [dropDownActive, setDropDownActive] = useState(false);
   const [profile, setProfile] = useState<DefaultSession>();
-  const [session, loading] = useSession();
-  // const { films } = useContent('films');
-  // const { series } = useContent('series');
-  // const slides = genreFilter({ series, films });
-  // console.log(slides);
+  const [session, _] = useSession();
 
-  useEffect(() => {
-    if (!loading && !session) {
-      Router.replace('/');
-    }
-  }, [loading]);
+  // useEffect(() => {
+  //   if (!loading && !session) {
+  //     Router.replace('/');
+  //   }
+  // }, [loading]);
 
   function handleUserProfile() {
     const user = {
@@ -56,70 +52,77 @@ export default function BrowsePage() {
   }
 
   return (
-    <HeaderContainer>
-      <Header browseHeader={true}>
-        <Search searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
-        <Link href='/infantil'>
-          <a className={styles.primaryNavigationItem}>Infantil</a>
-        </Link>
-        <div className={styles.profile}>
-          <img
-            src={`images/users/${profile.user?.image!}.png`}
-            className={styles.profilePicture}
-            onClick={() => setDropDownActive((prevState) => !prevState)}></img>
-          {dropDownActive && (
-            <div className={styles.dropdown}>
-              <div className={styles.dropdownItem}>
-                <img src={`images/users/${profile.user?.image!}.png`} className={styles.profilePicture}></img>
-                <span>Profile</span>
-              </div>
-              <div className={styles.dropdownItem} onClick={() => signOut()}>
+    <>
+      <HeaderContainer>
+        <Header browseHeader={true} setContentType={setContentType}>
+          <Search searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
+          <Link href='/infantil'>
+            <a className={styles.primaryNavigationItem}>Infantil</a>
+          </Link>
+          <div className={styles.profile}>
+            <img
+              src={`images/users/${profile.user?.image!}.png`}
+              className={styles.profilePicture}
+              onClick={() => setDropDownActive((prevState) => !prevState)}></img>
+            {dropDownActive && (
+              <div className={styles.dropdown}>
+                <div className={styles.dropdownItem}>
+                  <img src={`images/users/${profile.user?.image!}.png`} className={styles.profilePicture}></img>
+                  <span>Profile</span>
+                </div>
+                <div className={styles.dropdownItem} onClick={async () => await signOut()}>
+                  <span>Sign out</span>
+                </div>
+                {/* <Link href='/'> */}
                 {/* <img src={`images/users/${profile.user?.image!}.png`} className={styles.profilePicture}></img> */}
-                <span>Sign out</span>
+                {/* <a className={styles.dropdownItem} onClick={handleSignOut}>Sign out</a> */}
+                {/* </Link> */}
               </div>
-            </div>
-          )}
+            )}
+          </div>
+        </Header>
+        <div className={styles.logoAndText}>
+          <h1 className={styles.title}>Joker</h1>
+          <p className={styles.synopsis}>
+            In Gotham City, mentally troubled comedian Arthur Fleck is disregarded and mistreated by society. He then embarks on a downward spiral of revolution
+            and bloody crime. This path brings him face-to-face with his alter-ego: the Joker.
+          </p>
+          <div className={styles.actionsWrapper}>
+            <Link href='/play'>
+              <div className={styles.play}>
+                <svg viewBox='0 0 24 24' height='30px' width='30px'>
+                  <path d='M6 4l15 8-15 8z' fill='currentColor'></path>
+                </svg>
+                <a>Play</a>
+              </div>
+            </Link>
+            <Link href='/info'>
+              <a className={styles.moreInfo}>More info</a>
+            </Link>
+          </div>
         </div>
-      </Header>
-      <div className={styles.logoAndText}>
-        <h1 className={styles.title}>Joker</h1>
-        <p className={styles.synopsis}>
-          In Gotham City, mentally troubled comedian Arthur Fleck is disregarded and mistreated by society. He then embarks on a downward spiral of revolution
-          and bloody crime. This path brings him face-to-face with his alter-ego: the Joker.
-        </p>
-        <div className={styles.actionsWrapper}>
-          <Link href='/play'>
-            <div className={styles.play}>
-              <svg viewBox='0 0 24 24' height='30px' width='30px'>
-                <path d='M6 4l15 8-15 8z' fill='currentColor'></path>
-              </svg>
-              <a>Play</a>
-            </div>
-          </Link>
-          <Link href='/info'>
-            <a className={styles.moreInfo}>More info</a>
-          </Link>
-        </div>
-      </div>
-    </HeaderContainer>
+      </HeaderContainer>
+      {contentType === SERIES && <SeriesContent />}
+      {contentType === FILMS && <FilmsContent />}
+    </>
   );
 }
 
-// export async function getServerSideProps(context: any) {
-//   const session = await getSession({ req: context.req });
+export async function getServerSideProps(context: any) {
+  const session = await getSession({ req: context.req });
 
-//   if(!session) {
-//     return {
-//       redirect: {
-//         destination: '/',
-//         permanent: false
-//       },
-//     };
-//   }
+  if (!session) {
+    return {
+      redirect: {
+        destination: '/',
+        permanent: false,
+      },
+    };
+  }
 
-//   return {
-//     props: {
-//       session
-//     }
-//   }
-// }
+  return {
+    props: {
+      session,
+    },
+  };
+}

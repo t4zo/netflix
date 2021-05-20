@@ -4,11 +4,11 @@
   display: flex;
   align-items: center;
   max-width: 92vw;
+  gap: 20px;
   margin: auto;
   padding-top: 30px;
 
-
-  .tabbedPrimaryNavigation {
+  .primaryNavigationMainActions {
     display: flex;
     align-items: center;
     gap: 20px;
@@ -27,10 +27,15 @@
       }
     }
 
-  }
+    .primaryNavigationContentActions {
+      display: flex;
+      gap: 20px;
 
-  .primaryNavigationItem {
-    color: colors.$white;
-    font-size: 16px;
+      .primaryNavigationItem {
+        color: colors.$white;
+        font-size: 16px;
+        cursor: pointer;
+      }
+    }
   }
 }
