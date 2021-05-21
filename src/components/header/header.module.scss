@@ -32,9 +32,13 @@
       gap: 20px;
 
       .primaryNavigationItem {
-        color: colors.$white;
+        color: colors.$grey-light;
         font-size: 16px;
         cursor: pointer;
+
+        &:hover {
+          color: colors.$white;
+        }
       }
     }
   }

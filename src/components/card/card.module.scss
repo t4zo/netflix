@@ -1,0 +1,68 @@
+@use 'styles/colors';
+
+.card {
+  cursor: pointer;
+
+  .image {
+    border-radius: 5px;
+  }
+
+  .info {
+    padding: 10px;
+    background-color: #181818;
+
+    .actions {
+      display: flex;
+      gap: 10px;
+      font-size: 18px;
+
+      .actionItem,
+      .actionItemReadMore {
+        border: 2px solid colors.$grey-light;
+        padding: 8px 14px;
+        border-radius: 20px;
+
+        &:hover {
+          border: 2px solid colors.$white;
+        }
+      }
+      
+      .actionItemReadMore {
+        margin-left: auto;
+      }
+    }
+    .readMore {
+      color: colors.$grey-light;
+    }
+
+    .metaData {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      margin: 15px 0;
+
+      .title {
+        font-size: 1.2rem;
+      }
+
+      .relevant {
+        color: colors.$green;
+      }
+
+      .maturity {
+        padding: 8px;
+        background-color: colors.$primary;
+        font-size: 18px;
+        font-weight: 600;
+        border-radius: 4px;
+      }
+    }
+
+    .evidenceTags {
+      display: flex;
+      gap: 20px;
+      font-size: 15px;
+      font-weight: 600;
+    }
+  }
+}

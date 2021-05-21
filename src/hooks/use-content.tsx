@@ -22,5 +22,6 @@ export default function useContent(target: string) {
     fetchContent();
   }, []);
 
-  return { [target]: content };
+  // return { [target]: content };
+  return content;
 }

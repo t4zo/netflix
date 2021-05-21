@@ -35,6 +35,7 @@ export interface IJumbotronImage {
 
 export interface IMedia {
   id: string;
+  type: string;
   title: string;
   description: string;
   genre: string;

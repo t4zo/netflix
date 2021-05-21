@@ -8,10 +8,11 @@ import styles from './header.module.scss';
 interface Props {
   children?: ReactNode;
   browseHeader?: boolean;
+  contentType?: string;
   setContentType?: Dispatch<SetStateAction<string>>;
 }
 
-export default function Header({ browseHeader, setContentType, children }: Props) {
+export default function Header({ browseHeader, contentType, setContentType, children }: Props) {
   return (
     <nav className={styles.container}>
       <div className={styles.primaryNavigationMainActions}>
@@ -23,10 +24,10 @@ export default function Header({ browseHeader, setContentType, children }: Props
         </Link>
         {browseHeader && setContentType && (
           <ul className={styles.primaryNavigationContentActions}>
-            <li className={styles.primaryNavigationItem} onClick={() => setContentType(SERIES)}>
+            <li className={styles.primaryNavigationItem} onClick={() => setContentType(SERIES)} style={contentType === SERIES ? { 'color': 'white' } : {}}>
               Series
             </li>
-            <li className={styles.primaryNavigationItem} onClick={() => setContentType(FILMS)}>
+            <li className={styles.primaryNavigationItem} onClick={() => setContentType(FILMS)} style={contentType === FILMS ? { 'color': 'white' } : {}}>
               Films
             </li>
           </ul>

@@ -1,3 +1,4 @@
+import { IMedia } from 'interfaces';
 import { createContext, Dispatch, ReactNode, SetStateAction, useState } from 'react';
 
 interface Props {
@@ -5,24 +6,19 @@ interface Props {
 }
 
 interface IFeatureContext {
-  showFeature: boolean;
-  setShowFeature: Dispatch<SetStateAction<boolean>>;
-  itemFeature: any;
+  itemFeature: IMedia | null;
   setItemFeature: Dispatch<SetStateAction<any>>;
 }
 
 const FeatureContext = createContext<IFeatureContext>({
-  showFeature: false,
   itemFeature: null,
-  setShowFeature: () => false,
-  setItemFeature: () => {},
+  setItemFeature: () => null,
 });
 
 export function FeatureContextProvider({ children }: Props) {
-  const [showFeature, setShowFeature] = useState(false);
-  const [itemFeature, setItemFeature] = useState({});
+  const [itemFeature, setItemFeature] = useState(null);
 
-  return <FeatureContext.Provider value={{ showFeature, setShowFeature, itemFeature, setItemFeature }}>{children}</FeatureContext.Provider>;
+  return <FeatureContext.Provider value={{ itemFeature, setItemFeature }}>{children}</FeatureContext.Provider>;
 }
 
 export default FeatureContext;

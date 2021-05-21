@@ -54,7 +54,7 @@ export default function BrowsePage() {
   return (
     <>
       <HeaderContainer>
-        <Header browseHeader={true} setContentType={setContentType}>
+        <Header browseHeader={true} contentType={contentType} setContentType={setContentType}>
           <Search searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
           <Link href='/infantil'>
             <a className={styles.primaryNavigationItem}>Infantil</a>
@@ -63,9 +63,9 @@ export default function BrowsePage() {
             <img
               src={`images/users/${profile.user?.image!}.png`}
               className={styles.profilePicture}
-              onClick={() => setDropDownActive((prevState) => !prevState)}></img>
+              onMouseEnter={() => setDropDownActive(true)}></img>
             {dropDownActive && (
-              <div className={styles.dropdown}>
+              <div className={styles.dropdown} onMouseLeave={() => setDropDownActive(false)}>
                 <div className={styles.dropdownItem}>
                   <img src={`images/users/${profile.user?.image!}.png`} className={styles.profilePicture}></img>
                   <span>Profile</span>
