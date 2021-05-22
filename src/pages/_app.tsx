@@ -9,6 +9,11 @@ import { FeatureContextProvider } from 'contexts/featureContext';
 import { ThemeProvider } from 'styled-components';
 import theme from 'styles/theme';
 
+// Import Swiper styles
+import 'swiper/swiper.scss';
+// import "swiper/components/navigation/navigation.min.css";
+// import "swiper/components/pagination/pagination.min.css"
+
 import 'normalize.css';
 import 'styles/_base.scss';
 

@@ -3,11 +3,10 @@ import Link from 'next/link';
 import { DefaultSession } from 'next-auth';
 import { getSession, signOut, useSession } from 'next-auth/client';
 
-import { SelectProfile, Loading, Header, Search } from 'components';
+import { SelectProfile, Loading, Header, Search, Cards } from 'components';
 import { HeaderContainer } from 'containers';
 
-import { SERIES, FILMS } from '../../constants';
-import { SeriesContent, FilmsContent } from 'contents';
+import { SERIES } from '../../constants';
 import styles from './browse.module.scss';
 
 export default function BrowsePage() {
@@ -102,8 +101,7 @@ export default function BrowsePage() {
           </div>
         </div>
       </HeaderContainer>
-      {contentType === SERIES && <SeriesContent />}
-      {contentType === FILMS && <FilmsContent />}
+      {<Cards type={contentType} />}
     </>
   );
 }

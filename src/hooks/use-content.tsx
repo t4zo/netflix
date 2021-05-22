@@ -20,7 +20,7 @@ export default function useContent(target: string) {
       }
     }
     fetchContent();
-  }, []);
+  }, [target]);
 
   // return { [target]: content };
   return content;
