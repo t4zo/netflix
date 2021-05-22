@@ -19,8 +19,23 @@ export default function useContent(target: string) {
         console.error(error.message);
       }
     }
+
     fetchContent();
   }, [target]);
+
+  useEffect(() => {
+    async function fetchFirebaseDependencies() {
+      if (!firebase.auth) {
+        await import('firebase/auth');
+      }
+
+      if (!firebase.firestore) {
+        await import('firebase/firestore');
+      }
+    }
+
+    fetchFirebaseDependencies();
+  }, []);
 
   // return { [target]: content };
   return content;

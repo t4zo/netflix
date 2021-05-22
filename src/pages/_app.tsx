@@ -17,8 +17,6 @@ import 'swiper/swiper.scss';
 import 'normalize.css';
 import 'styles/_base.scss';
 
-import 'libs/firebase';
-
 export default function MyApp({ Component, pageProps }: AppProps) {
   return (
     <FirebaseContextProvider>

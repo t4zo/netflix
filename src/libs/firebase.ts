@@ -2,13 +2,22 @@
 import { seedDatabase } from '../seed';
 
 import firebase from 'firebase/app';
-import 'firebase/auth';
-import 'firebase/firestore';
+
 // const firebase = dynamic(() => import('firebase/app'));
 // dynamic(() => import('firebase/auth'));
 // dynamic(() => import('firebase/firestore'));
 
 seedDatabase();
+
+export async function getFirebaseDependencies() {
+  if (!firebase.auth) {
+    await import('firebase/auth');
+  }
+
+  if (!firebase.firestore) {
+    await import('firebase/firestore');
+  }
+}
 
 export function getFirebaseInstance() {
   if (!firebase.apps.length) {

@@ -1,4 +1,4 @@
-import { getFirebaseInstance } from './libs/firebase';
+import { getFirebaseDependencies, getFirebaseInstance } from './libs/firebase';
 import { IMedia } from 'interfaces';
 import { SERIES, FILMS } from './constants';
 
@@ -24,6 +24,8 @@ async function seedDocument(name: string, data: IMedia[]) {
 }
 
 export async function seedDatabase() {
+  await getFirebaseDependencies();
+
   const series = [
     {
       id: generateUUID(),
