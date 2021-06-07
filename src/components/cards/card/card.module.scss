@@ -3,7 +3,24 @@
 .card {
   cursor: pointer;
 
-  .image {
+  &:hover {
+    img {
+      border-bottom-left-radius: 0;
+      border-bottom-right-radius: 0;
+    }
+    
+    height: 418px;
+    // width: 440px;
+    top: 745px;
+    left: 583px;
+    transform-origin: center center;
+    transform: none;
+    z-index: 3;
+    opacity: 1;
+    box-shadow: rgb(0 0 0 / 75%) 0px 3px 10px;
+  }
+
+  img {
     border-radius: 5px;
   }
 
@@ -19,11 +36,15 @@
       .actionItem,
       .actionItemReadMore {
         border: 2px solid colors.$grey-light;
-        padding: 8px 14px;
+        padding: 8px 10px;
         border-radius: 20px;
 
         &:hover {
           border: 2px solid colors.$white;
+
+          svg {
+            color: colors.$white;
+          }
         }
       }
       
@@ -31,6 +52,14 @@
         margin-left: auto;
       }
     }
+
+    .description {
+      margin-bottom: 12px;
+      font-size: 14px;
+      line-height: 18px;
+      color: #e6e6e6;
+    }
+
     .readMore {
       color: colors.$grey-light;
     }

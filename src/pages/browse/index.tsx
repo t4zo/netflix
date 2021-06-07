@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { DefaultSession } from 'next-auth';
 import { getSession, signOut, useSession } from 'next-auth/client';
 
-import { SelectProfile, Loading, Header, Search, Cards } from 'components';
+import { SelectProfile, Loading, BrowserHeader, Search, Cards } from 'components';
 import { HeaderContainer } from 'containers';
 
 import { SERIES } from '../../constants';
@@ -12,7 +12,7 @@ import styles from './browse.module.scss';
 export default function BrowsePage() {
   const [selectProfileLoading, setSelectProfileLoading] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
-  const [contentType, setContentType] = useState(SERIES)
+  const [contentType, setContentType] = useState(SERIES);
   const [dropDownActive, setDropDownActive] = useState(false);
   const [profile, setProfile] = useState<DefaultSession>();
   const [session] = useSession();
@@ -53,16 +53,13 @@ export default function BrowsePage() {
   return (
     <>
       <HeaderContainer>
-        <Header browseHeader={true} contentType={contentType} setContentType={setContentType}>
+        <BrowserHeader contentType={contentType} setContentType={setContentType}>
           <Search searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
           <Link href='/infantil'>
             <a className={styles.primaryNavigationItem}>Infantil</a>
           </Link>
           <div className={styles.profile}>
-            <img
-              src={`images/users/${profile.user?.image!}.png`}
-              className={styles.profilePicture}
-              onMouseEnter={() => setDropDownActive(true)}></img>
+            <img src={`images/users/${profile.user?.image!}.png`} className={styles.profilePicture} onMouseEnter={() => setDropDownActive(true)}></img>
             {dropDownActive && (
               <div className={styles.dropdown} onMouseLeave={() => setDropDownActive(false)}>
                 <div className={styles.dropdownItem}>
@@ -79,7 +76,7 @@ export default function BrowsePage() {
               </div>
             )}
           </div>
-        </Header>
+        </BrowserHeader>
         <div className={styles.logoAndText}>
           <h1 className={styles.title}>Joker</h1>
           <p className={styles.synopsis}>
