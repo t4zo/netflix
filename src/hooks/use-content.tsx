@@ -1,9 +1,12 @@
 import { useCallback, useContext, useEffect, useState } from 'react';
 import FirebaseContext from 'contexts/firebaseContext';
 import { getCollection } from 'services/firebase';
+import { getGenres, getTrendingMovies } from 'services/tmdb';
+import { IMovie } from 'interfaces/tmdb';
 
 export default function useContent(collectionName: string) {
   const [content, setContent] = useState<any>([]);
+  const [movies, setMovies] = useState<IMovie[]>();
   const { firebase } = useContext(FirebaseContext);
 
   const getCollectionCallback = useCallback(async () => {
@@ -15,9 +18,38 @@ export default function useContent(collectionName: string) {
     }
   }, [collectionName]);
 
+  const getMoviesCallback = useCallback(async () => {
+    try {
+      const trendingMovies = await getTrendingMovies();
+      if (!trendingMovies) return;
+
+      let allGenres = await getGenres();
+
+      var movies = await Promise.all(
+        trendingMovies.map(async movie => {
+          const genres = movie.genre_ids.map((genre_id) => {
+            const genre = allGenres?.find((g) => g.id === genre_id);
+            return genre;
+          });
+
+          return {
+            ...movie,
+            genres: genres,
+          };
+        })
+      );
+
+      console.log(movies)
+      setMovies(movies);
+    } catch (error) {
+      console.error(error.message);
+    }
+  }, [collectionName]);
+
   useEffect(() => {
     getCollectionCallback();
-  }, [getCollectionCallback]);
+    getMoviesCallback();
+  }, [getCollectionCallback, getMoviesCallback]);
 
   useEffect(() => {
     async function fetchFirebaseDependencies() {
@@ -34,5 +66,8 @@ export default function useContent(collectionName: string) {
   }, []);
 
   // return { [target]: content };
-  return content;
+  return {
+    content,
+    movies,
+  };
 }

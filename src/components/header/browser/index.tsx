@@ -19,7 +19,6 @@ export default function Header({ contentType, setContentType, children }: Props)
         if (window.pageYOffset > 50) {
           setNavbarColor('black');
         } else {
-          console.log('2', window.pageYOffset);
           setNavbarColor('');
         }
       });
