@@ -1,27 +1,23 @@
+import { useCallback, useContext, useEffect, useState } from 'react';
 import FirebaseContext from 'contexts/firebaseContext';
-import { useContext, useEffect, useState } from 'react';
+import { getCollection } from 'services/firebase';
 
-export default function useContent(target: string) {
+export default function useContent(collectionName: string) {
   const [content, setContent] = useState<any>([]);
   const { firebase } = useContext(FirebaseContext);
 
-  useEffect(() => {
-    async function fetchContent() {
-      try {
-        const snapshot = await firebase.firestore().collection(target).get();
-        const content = snapshot.docs.map((c) => ({
-          ...c.data(),
-          id: c.id,
-        }));
-
-        setContent(content);
-      } catch (error) {
-        console.error(error.message);
-      }
+  const getCollectionCallback = useCallback(async () => {
+    try {
+      const content = await getCollection(collectionName);
+      setContent(content);
+    } catch (error) {
+      console.error(error.message);
     }
+  }, [collectionName]);
 
-    fetchContent();
-  }, [target]);
+  useEffect(() => {
+    getCollectionCallback();
+  }, [getCollectionCallback]);
 
   useEffect(() => {
     async function fetchFirebaseDependencies() {
