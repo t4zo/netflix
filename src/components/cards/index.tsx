@@ -4,7 +4,7 @@ import Card from 'components/cards/card';
 import { useContent } from 'hooks';
 
 import { IGenre } from 'interfaces/tmdb';
-import { getShuffledArray } from 'utils/arrays';
+// import { getShuffledArray } from 'utils/arrays';
 
 import styles from './items-content.module.scss';
 
