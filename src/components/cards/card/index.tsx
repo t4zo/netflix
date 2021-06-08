@@ -17,7 +17,7 @@ export default function Card({ item }: Props) {
 
   return (
     <div className={styles.card} onMouseEnter={() => setItemFeature(item)} onMouseLeave={() => setItemFeature(null)}>
-      <img src={`${baseImageURL}${item.backdrop_path}`} width={293} height={165} />
+      <img src={`${baseImageURL}${item.backdrop_path}`} width={350} />
       {itemFeature?.id !== undefined && (
         <div className={styles.info}>
           <div className={styles.actions}>
