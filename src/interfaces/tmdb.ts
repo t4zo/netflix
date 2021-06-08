@@ -9,7 +9,7 @@ export interface IMovie {
   original_language: string;
   original_title: string;
   overview: string;
-  popularity: number
+  popularity: number;
   poster_path: string;
   release_date: string;
   title: string;
@@ -17,6 +17,24 @@ export interface IMovie {
   vote_average: number;
   vote_count: number;
   images: IImage;
+}
+
+export interface ISerie {
+  backdrop_path: string;
+  first_air_date: string;
+  genre_ids: number[];
+  genres: any;
+  id: number;
+  name: string;
+  origin_country: string[];
+  original_language: string;
+  original_name: string;
+  overview: string;
+  poster_path: string;
+  vote_average: number;
+  vote_count: number;
+  popularity: number;
+  media_type: string;
 }
 
 export interface IGenre {

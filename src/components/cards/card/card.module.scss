@@ -2,22 +2,22 @@
 
 .card {
   cursor: pointer;
+  // height: 418px;
+  max-width: 440px;
 
   &:hover {
     img {
       border-bottom-left-radius: 0;
       border-bottom-right-radius: 0;
     }
-    
-    height: 418px;
-    // width: 440px;
-    top: 745px;
-    left: 583px;
-    transform-origin: center center;
-    transform: none;
-    z-index: 3;
-    opacity: 1;
-    box-shadow: rgb(0 0 0 / 75%) 0px 3px 10px;
+      
+    // top: 745px;
+    // left: 583px;
+    // transform-origin: center center;
+    // transform: none;
+    // z-index: 3;
+    // opacity: 1;
+    // box-shadow: rgb(0 0 0 / 75%) 0px 3px 10px;
   }
 
   img {
@@ -58,6 +58,13 @@
       font-size: 14px;
       line-height: 18px;
       color: #e6e6e6;
+
+      line-height: 20px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-line-clamp: 4; /* number of lines to show */
+      -webkit-box-orient: vertical;
     }
 
     .readMore {
@@ -76,6 +83,14 @@
 
       .relevant {
         color: colors.$green;
+      }
+
+      .score {
+        padding: 8px;
+        background-color: rgb(38, 148, 38);
+        font-size: 18px;
+        font-weight: 600;
+        border-radius: 4px;
       }
 
       .maturity {

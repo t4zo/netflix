@@ -3,16 +3,16 @@ import Image from 'next/image';
 import Card from 'components/cards/card';
 import { useContent } from 'hooks';
 
+import { IGenre } from 'interfaces/tmdb';
+import { getShuffledArray } from 'utils/arrays';
+
 import styles from './items-content.module.scss';
-import genreFilter, { IFilteredServices } from 'genre-filter';
-import { SERIES, FILMS } from '../../constants';
 
 // Import Swiper React components
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { IGenre } from 'interfaces/tmdb';
+// import { Swiper, SwiperSlide } from 'swiper/react';
+
 // import Swiper core and required modules
 // import SwiperCore, { Navigation, Pagination } from "swiper/core";
-
 // install Swiper modules
 // SwiperCore.use([Navigation, Pagination]);
 
@@ -22,26 +22,17 @@ interface Props {
 
 export default function Cards({ type }: Props) {
   const [mouseOverGenreText, setMouseOverGenreText] = useState('');
-  const { content: originalContentType, movies } = useContent(type);
-  const [content, setContent] = useState<IFilteredServices[]>(originalContentType);
+  const { content } = useContent(type);
   const [genres, setGenres] = useState<IGenre[]>();
 
   useEffect(() => {
-    if (type === SERIES) {
-      const { series } = genreFilter({ series: originalContentType });
-      setContent(series);
-    }
+    const genres = content
+      ?.map((m: any) => m.genres)
+      .flat()
+      .filter((v: any, i: any, a: any) => a.findIndex((t: any) => JSON.stringify(t) === JSON.stringify(v)) === i) as IGenre[];
 
-    if (type === FILMS) {
-      const { films } = genreFilter({ films: originalContentType });
-      setContent(films);
-    }
-  }, [genreFilter, originalContentType]);
-
-  useEffect(() => {
-    const genres = movies?.map(m => m.genres).flat().filter((v,i,a)=>a.findIndex(t=>(JSON.stringify(t) === JSON.stringify(v)))===i) as IGenre[];
     setGenres(genres);
-  }, [movies]);
+  }, [content]);
 
   return (
     <>
@@ -53,36 +44,17 @@ export default function Cards({ type }: Props) {
               {mouseOverGenreText === genre.name && <Image src='/images/icons/chevron-right.png' width={16} height={16} />}
             </h2>
             <div className={styles.genreList}>
-              <Swiper spaceBetween={10} slidesPerView={5}>
-                {movies?.filter(movie => movie.genre_ids.includes(genre.id)).map((item) => (
-                  <SwiperSlide key={item.id}>
-                    <Card key={item.id} item={item} />
-                  </SwiperSlide>
-                ))}
-              </Swiper>
+              {/* <Swiper spaceBetween={10} slidesPerView={5}> */}
+              {content?.filter((c: any) => c.genre_ids.includes(genre.id)).map((item: any) => (
+                // <SwiperSlide key={item.id}>
+                <Card key={item.id} item={item} />
+                // </SwiperSlide>
+              ))}
+              {/* </Swiper> */}
             </div>
           </>
         </div>
       ))}
-      {/* {content.map((typeFiltered) => (
-        <div className={styles.genreContainer} key={typeFiltered.title}>
-          <>
-            <h2 className={styles.genreTitle} onMouseEnter={() => setMouseOverGenreText(typeFiltered.title)} onMouseLeave={() => setMouseOverGenreText('')}>
-              {typeFiltered.title}
-              {mouseOverGenreText === typeFiltered.title && <Image src='/images/icons/chevron-right.png' width={16} height={16} />}
-            </h2>
-            <div className={styles.genreList}>
-              <Swiper spaceBetween={10} slidesPerView={5}>
-                {typeFiltered.data.map((item) => (
-                  <SwiperSlide>
-                    <Card key={item.id} item={item} />
-                  </SwiperSlide>
-                ))}
-              </Swiper>
-            </div>
-          </>
-        </div>
-      ))} */}
     </>
   );
 }
