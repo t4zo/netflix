@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import Image from 'next/image';
+// import Image from 'next/image';
 import styles from './card.module.scss';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -17,7 +17,7 @@ export default function Card({ item }: Props) {
 
   return (
     <div className={styles.card} onMouseEnter={() => setItemFeature(item)} onMouseLeave={() => setItemFeature(null)}>
-      <Image src={`${baseImageURL}${item.backdrop_path}`} width={293} height={165} layout='fixed' />
+      <img src={`${baseImageURL}${item.backdrop_path}`} width={293} height={165} />
       {itemFeature?.id !== undefined && (
         <div className={styles.info}>
           <div className={styles.actions}>
