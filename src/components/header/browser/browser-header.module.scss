@@ -36,6 +36,7 @@
     .primaryNavigationContentActions {
       display: flex;
       gap: 20px;
+      list-style-type: none;
 
       .primaryNavigationItem {
         color: colors.$grey-light;

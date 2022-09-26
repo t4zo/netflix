@@ -61,7 +61,7 @@ export default NextAuth({
     }),
   ],
   events: {
-    async signOut(_) {
+    async signOut(_: any) {
       const firebase = getFirebaseInstance();
       const firebaseAuth = firebase.auth();
 
